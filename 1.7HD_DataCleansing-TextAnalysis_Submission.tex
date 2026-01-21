@@ -1,0 +1,1778 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+]{article}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[top=10mm,left=10mm,right=10mm]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{caption}
+\captionsetup[table]{font=small, skip=0pt}
+\usepackage{geometry}
+\geometry{a4paper, top=10mm, left=10mm, right=10mm}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Task 1.7HD: Data Cleansing and Text Analysis Challenge},
+  pdfauthor={Tri Khuong Nguyen},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Task 1.7HD: Data Cleansing and Text Analysis Challenge}
+\author{Tri Khuong Nguyen}
+\date{}
+
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\subsection{Abstract}\label{abstract}
+
+This report includes importing the downloaded datasets from
+\textbf{Academia - StackExchange} site and converting their
+\texttt{.xml} format into the standardised \texttt{.csv} format for 5
+data visualisations. To successfully create the charts, we prepare the
+data by applying data wrangling techniques such as merging and filtering
+data frames, handling missing values, calculating aggregates, and
+extracting keywords using regular expressions. In the end, we cover data
+privacy issues that arise from these activities and suggest solutions.
+
+\subsection{1. Importing packages}\label{importing-packages}
+
+\begin{itemize}
+\item
+  First, we must import the packages we will use throughout this task.
+\item
+  \texttt{numpy} and \texttt{pandas} are used for executing numbers and
+  data frames respectively while \texttt{matplotlib} and
+  \texttt{seaborn} facilitate the creation of visualisations.
+  \texttt{matplotlib.patheffects} is a sub-module for the stroke of
+  text.
+\item
+  For this task, we need to use the \texttt{xml.etree.ElementTree} as a
+  crucial component in converting the \texttt{.xml} data files to
+  \texttt{.csv} (details in next section).
+\item
+  Our world map in this report needs \texttt{geopandas}, while the
+  sentiment analysis demands the use of the \texttt{nltk} library
+  (consists of the sentiment analyzer
+  \texttt{SentimentIntensityAnalyzer} from \texttt{nltk.sentiment}
+  module). The \texttt{wordcloud} module will help us create a word
+  cloud as one of the visualisations.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\ImportTok{import}\NormalTok{ matplotlib.patheffects }\ImportTok{as}\NormalTok{ path\_effects}
+\ImportTok{import}\NormalTok{ seaborn }\ImportTok{as}\NormalTok{ sns}
+\ImportTok{import}\NormalTok{ xml.etree.ElementTree }\ImportTok{as}\NormalTok{ ET}
+\ImportTok{import}\NormalTok{ geopandas }\ImportTok{as}\NormalTok{ gpd}
+\ImportTok{import}\NormalTok{ nltk}
+\ImportTok{from}\NormalTok{ nltk.sentiment }\ImportTok{import}\NormalTok{ SentimentIntensityAnalyzer}
+\ImportTok{from}\NormalTok{ wordcloud }\ImportTok{import}\NormalTok{ WordCloud}
+
+\ImportTok{import}\NormalTok{ warnings}
+\NormalTok{warnings.filterwarnings(}\StringTok{"ignore"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\(\rightarrow\) Next, we will load our data.
+
+\subsection{\texorpdfstring{2. Converting \texttt{.xml} data files to
+\texttt{.csv}}{2. Converting .xml data files to .csv}}\label{converting-.xml-data-files-to-.csv}
+
+\begin{itemize}
+\item
+  We choose the
+  \href{https://academia.stackexchange.com/}{\textbf{Academia}} (from
+  \href{https://stackexchange.com/sites?view=list\#oldest}{\textbf{StackExchange}})
+  as the site for analysing.
+\item
+  The zipped data folder for \emph{Academia} can be downloaded
+  \href{https://archive.org/download/stackexchange/academia.stackexchange.com.7z}{here}
+\item
+  After downloading, we extract the folder to get the data files
+  (\texttt{Badges.xml,\ Comments.xml,\ PostHistory.xml,\ PostLinks.xml,\ Posts.xml,\ Tags.xml,\ Users.xml,\ Votes.xml}).
+  These are all in \texttt{.xml} format, and it will be much more
+  convenient for us if they are converted into \texttt{.csv} since we
+  can import them as data frames and use \texttt{pandas} to perform
+  different operations. Therefore, we decide to write a function
+  converting \texttt{.xml} to \texttt{.csv}, called
+  \texttt{xml\_to\_csv}. This function takes in the \texttt{.xml} file
+  (parameter \texttt{input\_file}) and outputs the \texttt{.csv}
+  equivalence (parameter \texttt{output\_file}).
+\item
+  In this function, first, we get the entire XML structure of
+  \texttt{input\_file} as a tree using the imported \texttt{ET} module
+  (\texttt{ET.parse(input\_file)}). The parsed \texttt{tree} from
+  \texttt{Posts.xml} will look something like this (with each
+  \texttt{\textless{}row/\textgreater{}} tag representing a row
+  containing all of its attributes - e.g.~\texttt{Id="1"} denotes the
+  attribute's data \texttt{"1"} of the attribute's name \texttt{Id}):
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\textless{}}\KeywordTok{posts}\NormalTok{\textgreater{}}
+\NormalTok{    \textless{}}\KeywordTok{row}\OtherTok{ Id=}\StringTok{"1"}\OtherTok{ Title=}\StringTok{"Question 1"}\NormalTok{ /\textgreater{}}
+\NormalTok{    \textless{}}\KeywordTok{row}\OtherTok{ Id=}\StringTok{"2"}\OtherTok{ Title=}\StringTok{"Question 2"}\NormalTok{ /\textgreater{}}
+\NormalTok{\textless{}/}\KeywordTok{posts}\NormalTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Subsequently, we get the root of this \texttt{tree} (the top-level
+  element that consists of all rows or all
+  \texttt{\textless{}row/\textgreater{}} tags - the root is
+  \texttt{\textless{}posts\textgreater{}} in our example) -
+  \texttt{root\ =\ tree.getroot()}.
+\item
+  For the next step, we create \texttt{table} as a list containing all
+  rows from \texttt{root}. We can add the rows to \texttt{table} by
+  looping through each row in \texttt{root}
+  (\texttt{for\ row\ in\ root}) and append its attributes to
+  \texttt{table} (\texttt{table.append(row.attrib)}).
+  \texttt{row.attrib} encompasses all attributes of that \texttt{row}
+  where each attribute is denoted by its name-data pair (key-value pair)
+  in a dictionary. With our example, the first \texttt{row} to be
+  appended to \texttt{table} is
+  \texttt{\{\textquotesingle{}Id\textquotesingle{}:\ \textquotesingle{}1\textquotesingle{},\ \textquotesingle{}Title\textquotesingle{}:\ \textquotesingle{}Question\ 1\textquotesingle{}\}}.
+\item
+  The last step is converting \texttt{table} to a data frame
+  (\texttt{df}) using \texttt{pd.DataFrame(table)} and saving
+  \texttt{df} into a \texttt{.csv} file (named \texttt{output\_file})
+  with \texttt{df.to\_csv(output\_file,\ index=False)}
+  (\texttt{index=False} avoids adding an extra index column to our data
+  frame).
+\item
+  After defining the function, we can call it for every conversion to
+  \texttt{.csv} of our 8 \texttt{.xml} data files. For example,
+  \texttt{xml\_to\_csv("Posts.xml",\ "Posts.csv")} converts
+  \texttt{Posts.xml} to \texttt{Posts.csv} and saves it in the current
+  directory, and the same goes for the other data files.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Function that converts input\_file (XML) to output\_file (CSV)}
+\KeywordTok{def}\NormalTok{ xml\_to\_csv(input\_file, output\_file):}
+    \CommentTok{\# Parse the XML file}
+\NormalTok{    tree }\OperatorTok{=}\NormalTok{ ET.parse(input\_file)}
+\NormalTok{    root }\OperatorTok{=}\NormalTok{ tree.getroot()}
+
+    \CommentTok{\# Extract data}
+\NormalTok{    table }\OperatorTok{=}\NormalTok{ []}
+    \ControlFlowTok{for}\NormalTok{ row }\KeywordTok{in}\NormalTok{ root:}
+\NormalTok{        table.append(row.attrib)}
+
+    \CommentTok{\# Convert to data frame}
+\NormalTok{    df }\OperatorTok{=}\NormalTok{ pd.DataFrame(table)}
+    \CommentTok{\# Save data frame to CSV}
+\NormalTok{    df.to\_csv(output\_file, index}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+
+\CommentTok{\# Convert XML files to CSV and save them in current folder}
+\NormalTok{xml\_to\_csv(}\StringTok{"Badges.xml"}\NormalTok{, }\StringTok{"Badges.csv"}\NormalTok{)}
+\NormalTok{xml\_to\_csv(}\StringTok{"Comments.xml"}\NormalTok{, }\StringTok{"Comments.csv"}\NormalTok{)}
+\NormalTok{xml\_to\_csv(}\StringTok{"PostHistory.xml"}\NormalTok{, }\StringTok{"PostHistory.csv"}\NormalTok{)}
+\NormalTok{xml\_to\_csv(}\StringTok{"PostLinks.xml"}\NormalTok{, }\StringTok{"PostLinks.csv"}\NormalTok{)}
+\NormalTok{xml\_to\_csv(}\StringTok{"Posts.xml"}\NormalTok{, }\StringTok{"Posts.csv"}\NormalTok{)}
+\NormalTok{xml\_to\_csv(}\StringTok{"Tags.xml"}\NormalTok{, }\StringTok{"Tags.csv"}\NormalTok{)}
+\NormalTok{xml\_to\_csv(}\StringTok{"Users.xml"}\NormalTok{, }\StringTok{"Users.csv"}\NormalTok{)}
+\NormalTok{xml\_to\_csv(}\StringTok{"Votes.xml"}\NormalTok{, }\StringTok{"Votes.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\(\rightarrow\) We have the standardised data files in \texttt{.csv}
+format.
+
+\subsection{3. Loading data files}\label{loading-data-files}
+
+\begin{itemize}
+\tightlist
+\item
+  Having all converted \texttt{.csv} data files, we can load them into
+  our notebook as data frames using \texttt{pd.read\_csv()} for each.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load converted CSV files as pandas data frames}
+\NormalTok{badges\_df }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"Badges.csv"}\NormalTok{)}
+\NormalTok{comments\_df }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"Comments.csv"}\NormalTok{)}
+\NormalTok{postHistory\_df }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"PostHistory.csv"}\NormalTok{)}
+\NormalTok{postLinks\_df }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"PostLinks.csv"}\NormalTok{)}
+\NormalTok{posts\_df }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"Posts.csv"}\NormalTok{)}
+\NormalTok{tags\_df }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"Tags.csv"}\NormalTok{)}
+\NormalTok{users\_df }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"Users.csv"}\NormalTok{)}
+\NormalTok{votes\_df }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"Votes.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\(\rightarrow\) We are now ready for the analysis part.
+
+\subsection{4. World Map highlighting Top 5 Countries with most
+Users}\label{world-map-highlighting-top-5-countries-with-most-users}
+
+\begin{itemize}
+\item
+  \textbf{Idea:} We want to create a World Map that colors each
+  country's region based on its number of users (a color scale to map
+  the number of users with the corresponding color). The names of the 5
+  countries with the most users are also displayed.
+\item
+  In \texttt{users\_df}, each row represents the information of a user
+  and their country is mostly contained in the \texttt{Location} column
+  (see
+  \href{https://meta.stackexchange.com/questions/2677/database-schema-documentation-for-the-public-data-dump-and-sede}{\emph{User}
+  table's columns}). The first thing we should do is removing the
+  missing values in \texttt{Location}
+  (\texttt{sub\_users\_df\ =\ users\_df.dropna(subset={[}"Location"{]})}
+  - \texttt{sub\_users\_df} is a sub data frame that we use specifically
+  in this section to avoid altering the main \texttt{users\_df} data
+  frame).
+\item
+  Since each cell in \texttt{Location} encompasses not just the country
+  name but also state, city, etc., we must extract only the country
+  name, which is achievable with
+  \href{https://docs.python.org/3/library/re.html}{\textbf{regular
+  expressions (regexes)}} - a regex is essentially a standard pattern
+  (form) of substring that we write to match every substring exists in a
+  string. With that being said, we can convert the data in
+  \texttt{Location} column to string
+  (\texttt{sub\_users\_df{[}"Location"{]}.str}), then use
+  \texttt{.extract()} and input the regex that grabs the country names.
+  We start with \texttt{r}, an indication of regex, followed by the
+  pattern (substring) inside \texttt{"(\ )"} (the parentheses group
+  different expressions into a single pattern). The pattern for each
+  country name is a word (\texttt{\textbackslash{}w+} -
+  \texttt{\textbackslash{}w} starts from the first letter of the word
+  and \texttt{+} matches remaining letters until the end of that word or
+  until encountering a non-word character like a space, which means
+  grabbing the whole word). At this point, we have grabbed
+  \texttt{"Vietnam"} or \texttt{"China"}, but there are country names
+  with more than one word (e.g.~\texttt{"United\ States"}), so we must
+  account for another word with an expression
+  \texttt{(?:\textbackslash{}s\textbackslash{}w+)?} -
+  \texttt{\textbackslash{}s\textbackslash{}w+} contains a space
+  (\texttt{\textbackslash{}s}) followed by a word
+  (\texttt{\textbackslash{}w+}), and if there is a space after the first
+  word, there is a second word, so these must go together and be
+  included in a non-capturing group (\texttt{(?:\ )} - basically not
+  creating a new group in memory but this belongs to the only group we
+  created initially as one group corresponds to the one
+  \texttt{Location} column we are working on only); the \texttt{?} at
+  the end specifies that this non-capturing group is optional (as there
+  are countries with 1 word in their name only but there is an option to
+  include the second word for 2-word names). There should also be an
+  option for 3-word countries
+  (\texttt{"Papua\ New\ Guinea",\ "United\ Arab\ Emirates",\ etc.}), and
+  its expression is the same as the one for the second word
+  (\texttt{(?:\textbackslash{}s\textbackslash{}w+)?}). The last
+  important expression is the \texttt{\$} sign, which only matches the
+  substrings started from the end because as observed, most users typed
+  their \texttt{Location} in the form \texttt{City,\ state,\ Country},
+  so the country names are likely at the end. We create a column
+  \texttt{Country} that contains the extracted country names (assign the
+  extracted column to \texttt{sub\_users\_df{[}"Country"{]}}).
+\item
+  The extracted names are quite accurate, except for users who did not
+  include their country names but only the city or state names. To
+  rectify these, we replace the city or state names that belong to each
+  country with the country name itself. Starting with \emph{USA}, we
+  turn the created \texttt{Country} column into strings
+  (\texttt{sub\_users\_df{[}"Country"{]}.str}), then use
+  \texttt{.replace()} function with regex (\texttt{regex=True})
+  \texttt{\textbackslash{}b} is the boundary (use
+  \texttt{\textbackslash{}b} at the beginning and the end of the group
+  \texttt{()} shows that we only want to match the standalone names
+  because without this, we might mistakenly alter a few letters in a
+  meaningful name), \texttt{\textbar{}} performs the logic \emph{OR}
+  (\texttt{us\textbar{}usa\textbar{}united\ states} matches either
+  \texttt{us} or \texttt{usa} or \texttt{united\ states}). All
+  substrings with this pattern (the created regex) should be changed to
+  \texttt{"USA"}. Note that we set \texttt{case=False} to match the
+  names case-insensitively (e.g.~\texttt{usa} is the same as
+  \texttt{Usa}). The
+  \href{https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States\#States}{states
+  of USA} (e.g.~NY - New York, IL - Illinois) should also be replaced by
+  \texttt{USA}. Applying the same method for a few cities of some other
+  countries:
+  \href{https://en.wikipedia.org/wiki/List_of_cities_in_the_United_Kingdom\#List_of_cities}{UK},
+  \href{https://en.wikipedia.org/wiki/List_of_cities_in_Germany_by_population\#List}{Germany},
+  \href{https://en.wikipedia.org/wiki/List_of_cities_in_Australia}{Australia},
+  \href{https://en.wikipedia.org/wiki/List_of_cities_in_China_by_population\#Cities_and_towns_by_population}{China},
+  \href{https://en.wikipedia.org/wiki/List_of_cities_in_India_by_population\#List}{India},
+  \href{https://en.wikipedia.org/wiki/List_of_cities_in_Canada}{Canada},
+  \href{https://simple.wikipedia.org/wiki/List_of_cities_in_France}{France},
+  \href{https://en.wikipedia.org/wiki/List_of_cities_in_Italy}{Italy},
+  \href{https://en.wikipedia.org/wiki/List_of_metropolitan_areas_in_Spain}{Spain},
+  \href{https://en.wikipedia.org/wiki/List_of_cities_in_Brazil_by_population}{Brazil}.
+  Germany and Czech Republic are also called by other names in their
+  native languages, like Deutschland and Czechia respectively, which
+  also need to be replaced. After each invocation of the replace
+  function, we assign the column with replaced names to the original one
+  (in-place replacing) - \texttt{sub\_users\_df.loc{[}:,\ "Country"{]}}.
+\item
+  We have now got the extracted and cleaned country names that we can
+  utilise to create the map, but first, we must import the map itself
+  from the
+  \href{https://naciscdn.org/naturalearth/110m/cultural/ne_110m_admin_0_countries.zip}{\emph{Natural
+  Earth dataset}} (contains countries and their shapes at 1:110 million
+  scale) using \texttt{gpd.read\_file(link\_above)}. We call it
+  \texttt{world\_map}.
+\item
+  The two country names \texttt{"United\ States\ of\ America"} and
+  \texttt{"United\ Kingdom"} of the original \texttt{world\_map} need to
+  be modified to \texttt{"USA"} and \texttt{"UK"} respectively to match
+  the ones in the \texttt{Location} column of \texttt{sub\_users\_df}
+  (\texttt{world\_map{[}"NAME"{]}\ =\ world\_map{[}"NAME"{]}.replace("United\ States\ of\ America",\ "USA")}
+  and
+  \texttt{world\_map{[}"NAME"{]}\ =\ world\_map{[}"NAME"{]}.replace("United\ Kingdom",\ "UK")},
+  both are in-place replacements).
+\item
+  We count the users (occurrences) of every unique country using
+  \texttt{sub\_users\_df{[}"Country"{]}.value\_counts()}, assigned to
+  \texttt{countryUsers\_counts}. We then take the country names of
+  \texttt{world\_map} (\texttt{world\_map{[}"NAME"{]}}) and map them
+  with their corresponding counts (\texttt{countryUsers\_counts}) with
+  \texttt{world\_map{[}"NAME"{]}.map(countryUsers\_counts)}. Countries
+  not present in the \texttt{Country} column are automatically assigned
+  with 0 users in \texttt{world\_map} (\texttt{.fillna(0)}). This
+  mapping is the new column \texttt{countryUsers\_counts} of the
+  \texttt{world\_map} data frame
+  (\texttt{world\_map{[}"countryUsers\_counts"{]}}).
+\item
+  To the step of plotting the map, we first create the axes \texttt{ax}
+  from \texttt{plt.subplots(1,\ 1,\ figsize=(15,\ 5))}, a single subplot
+  with 1 row and 1 column, and figure size of 15 inches wide and 5
+  inches tall. Subsequently, we use \texttt{world\_map.plot()} to draw
+  the map, with the count of users of each country
+  (\texttt{countryUsers\_counts} column established in the previous
+  step) as the data (\texttt{column="countryUsers\_counts"}), using the
+  created axes (\texttt{ax=ax}), the black border of each country for
+  visual clarity (\texttt{edgecolor="black"}), the \emph{``viridis''}
+  color map that assigns a color in the color scale for each country
+  region based on their count (\texttt{cmap="viridis"}), and
+  \texttt{legend=True} displays the color scale.
+  \texttt{ax.set\_xticks({[}{]})} and \texttt{ax.set\_yticks({[}{]})}
+  remove the ticks on x- and y-axes respectively as they are unnecessary
+  for this visualisation.
+\item
+  To display the names of 5 countries with most users, we can first
+  filter them using \texttt{countryUsers\_counts.nlargest(5)}, and
+  convert to a dictionary (\texttt{.to\_dict()}) where each country name
+  is the key and its corresponding count is the value.
+  \texttt{world\_map.geometry.centroid.x},
+  \texttt{world\_map.geometry.centroid.y},
+  \texttt{world\_map{[}"NAME"{]}} are the x-coordinates of the country
+  centroids (the centers of country regions), the y-coordinates of those
+  country centroids, and those country names respectively, and if we use
+  the \texttt{zip()} function on them, we have those 3 of each country
+  in a tuple (belonged to an index) in a list of tuples (each tuple
+  represents a country). Looping through the zipping of each country
+  (with its centroid's x-coordinate as \texttt{x}, y-coordinate as
+  \texttt{y}, name as \texttt{name}), if that country is one of the 5
+  countries with most users (\texttt{if\ name\ in\ top\_5\_countries}),
+  we add display the name (\texttt{name}) right at the centroid
+  (\texttt{x} and \texttt{y} coordinates) using
+  \texttt{plt.text(x,\ y,\ name)}, with 7 as font size
+  (\texttt{fontsize=7}), white as text color (\texttt{color="white"}),
+  and a black stroke of width 2
+  (\texttt{path\_effects={[}path\_effects.withStroke(linewidth=2,\ foreground="black"){]}}).
+\item
+  For the final decorations, we add the title
+  (\texttt{plt.title("World\ Map\ showing\ Number\ of\ Users\ for\ each\ Country")}),
+  use bigger map (\texttt{plt.tight\_layout()}), and show the map
+  (\texttt{plt.show()}).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Handle missing data}
+\NormalTok{sub\_users\_df }\OperatorTok{=}\NormalTok{ users\_df.dropna(subset}\OperatorTok{=}\NormalTok{[}\StringTok{"Location"}\NormalTok{])}
+
+\CommentTok{\# Extract country names}
+\NormalTok{sub\_users\_df[}\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ (sub\_users\_df[}\StringTok{"Location"}\NormalTok{]}
+\NormalTok{                       .}\BuiltInTok{str}
+\NormalTok{                       .extract(}\VerbatimStringTok{r"(\textbackslash{}w+(?:\textbackslash{}s\textbackslash{}w+)?(?:\textbackslash{}s\textbackslash{}w+)?$)"}\NormalTok{)}
+\NormalTok{                      )}
+
+\CommentTok{\# Replace names referring to single distinct country}
+\CommentTok{\#\# "USA"}
+\NormalTok{sub\_users\_df.loc[:, }\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].}\BuiltInTok{str}\NormalTok{.replace(}
+    \VerbatimStringTok{r"\textbackslash{}b(us|usa|united states)\textbackslash{}b"}\NormalTok{,}
+    \StringTok{"USA"}\NormalTok{,}
+\NormalTok{    case}\OperatorTok{=}\VariableTok{False}\NormalTok{, regex}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+\NormalTok{sub\_users\_df.loc[:, }\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].}\BuiltInTok{str}\NormalTok{.replace(}
+    \VerbatimStringTok{r"\textbackslash{}b(NY|NM|NJ|NH|NV|NE|MT|MO|MS|MN|MI|MA|MD|"}
+    \VerbatimStringTok{r"ME|LA|KY|KS|IA|IN|IL|ID|HI|GA|FL|DE|CT|CO|CA|AR|AZ|AK|AL|"}
+    \VerbatimStringTok{r"NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY)\textbackslash{}b"}\NormalTok{,}
+    \StringTok{"USA"}\NormalTok{,}
+\NormalTok{    case}\OperatorTok{=}\VariableTok{True}\NormalTok{, regex}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+
+\CommentTok{\#\# "UK"}
+\NormalTok{sub\_users\_df.loc[:, }\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].}\BuiltInTok{str}\NormalTok{.replace(}
+    \VerbatimStringTok{r"\textbackslash{}b(uk|united kingdom|london|manchester|birmingham|nottingham|"}
+    \VerbatimStringTok{r"england|wales|cardiff|scotland|edinburgh|northern Ireland)\textbackslash{}b"}\NormalTok{,}
+    \StringTok{"UK"}\NormalTok{, case}\OperatorTok{=}\VariableTok{False}\NormalTok{, regex}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+
+\CommentTok{\#\# "Germany"}
+\NormalTok{sub\_users\_df.loc[:, }\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].}\BuiltInTok{str}\NormalTok{.replace(}
+    \VerbatimStringTok{r"deutschland|munich|berlin|hamburg|cologne"}\NormalTok{, }\StringTok{"Germany"}\NormalTok{,}
+\NormalTok{    case}\OperatorTok{=}\VariableTok{False}\NormalTok{, regex}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+
+\CommentTok{\#\# "Australia"}
+\NormalTok{sub\_users\_df.loc[:, }\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].}\BuiltInTok{str}\NormalTok{.replace(}
+    \VerbatimStringTok{r"sydney|melbourne|canberra|perth|adelaide"}\NormalTok{, }\StringTok{"Australia"}\NormalTok{,}
+\NormalTok{    case}\OperatorTok{=}\VariableTok{False}\NormalTok{, regex}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+
+\CommentTok{\#\# "China"}
+\NormalTok{sub\_users\_df.loc[:, }\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].}\BuiltInTok{str}\NormalTok{.replace(}
+    \VerbatimStringTok{r"beijing|shanghai"}\NormalTok{, }\StringTok{"China"}\NormalTok{, case}\OperatorTok{=}\VariableTok{False}\NormalTok{, regex}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+
+\CommentTok{\#\# "India"}
+\NormalTok{sub\_users\_df.loc[:, }\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].}\BuiltInTok{str}\NormalTok{.replace(}
+    \VerbatimStringTok{r"mumbai|chennai"}\NormalTok{, }\StringTok{"India"}\NormalTok{, case}\OperatorTok{=}\VariableTok{False}\NormalTok{, regex}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+
+\CommentTok{\#\# "Canada"}
+\NormalTok{sub\_users\_df.loc[:, }\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].}\BuiltInTok{str}\NormalTok{.replace(}
+    \VerbatimStringTok{r"vancouver|toronto|ottawa|montreal|calgary"}\NormalTok{, }\StringTok{"Canada"}\NormalTok{,}
+\NormalTok{    case}\OperatorTok{=}\VariableTok{False}\NormalTok{, regex}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+
+\CommentTok{\#\# "France"}
+\NormalTok{sub\_users\_df.loc[:, }\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].}\BuiltInTok{str}\NormalTok{.replace(}
+    \VerbatimStringTok{r"paris"}\NormalTok{, }\StringTok{"France"}\NormalTok{, case}\OperatorTok{=}\VariableTok{False}\NormalTok{, regex}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+
+\CommentTok{\#\# "Italy"}
+\NormalTok{sub\_users\_df.loc[:, }\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].}\BuiltInTok{str}\NormalTok{.replace(}
+    \VerbatimStringTok{r"rome|milan"}\NormalTok{, }\StringTok{"Italy"}\NormalTok{, case}\OperatorTok{=}\VariableTok{False}\NormalTok{, regex}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+
+\CommentTok{\#\# "Spain"}
+\NormalTok{sub\_users\_df.loc[:, }\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].}\BuiltInTok{str}\NormalTok{.replace(}
+    \VerbatimStringTok{r"madrid|barcelona"}\NormalTok{, }\StringTok{"Italy"}\NormalTok{, case}\OperatorTok{=}\VariableTok{False}\NormalTok{, regex}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+
+\CommentTok{\#\# "Czech"}
+\NormalTok{sub\_users\_df.loc[:, }\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].}\BuiltInTok{str}\NormalTok{.replace(}
+    \VerbatimStringTok{r"czechia"}\NormalTok{, }\StringTok{"Czech Republic"}\NormalTok{, case}\OperatorTok{=}\VariableTok{False}\NormalTok{, regex}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+
+\CommentTok{\#\# "Brazil"}
+\NormalTok{sub\_users\_df.loc[:, }\StringTok{"Country"}\NormalTok{] }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].}\BuiltInTok{str}\NormalTok{.replace(}
+    \VerbatimStringTok{r"brasil|brazil|rio de janeiro"}\NormalTok{, }\StringTok{"Brazil"}\NormalTok{,}
+\NormalTok{    case}\OperatorTok{=}\VariableTok{False}\NormalTok{, regex}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+
+
+\CommentTok{\# Import the map}
+\NormalTok{world\_map }\OperatorTok{=}\NormalTok{ gpd.read\_file(}\StringTok{"https://naciscdn.org/naturalearth/110m/"}
+                          \OperatorTok{+} \StringTok{"cultural/ne\_110m\_admin\_0\_countries.zip"}\NormalTok{)}
+
+\CommentTok{\# Replace country names}
+\NormalTok{world\_map[}\StringTok{"NAME"}\NormalTok{] }\OperatorTok{=}\NormalTok{ world\_map[}\StringTok{"NAME"}\NormalTok{].replace(}\StringTok{"United States of America"}\NormalTok{, }\StringTok{"USA"}\NormalTok{)}
+\NormalTok{world\_map[}\StringTok{"NAME"}\NormalTok{] }\OperatorTok{=}\NormalTok{ world\_map[}\StringTok{"NAME"}\NormalTok{].replace(}\StringTok{"United Kingdom"}\NormalTok{, }\StringTok{"UK"}\NormalTok{)}
+
+\CommentTok{\# Establish country counts and map them to the map}
+\NormalTok{countryUsers\_counts }\OperatorTok{=}\NormalTok{ sub\_users\_df[}\StringTok{"Country"}\NormalTok{].value\_counts()}
+\NormalTok{world\_map[}\StringTok{"countryUsers\_counts"}\NormalTok{] }\OperatorTok{=}\NormalTok{ (world\_map[}\StringTok{"NAME"}\NormalTok{]}
+\NormalTok{                                    .}\BuiltInTok{map}\NormalTok{(countryUsers\_counts)}
+\NormalTok{                                    .fillna(}\DecValTok{0}\NormalTok{)}
+\NormalTok{                                   )}
+
+\CommentTok{\# Plot the map}
+\NormalTok{\_, ax }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+\NormalTok{world\_map.plot(column}\OperatorTok{=}\StringTok{"countryUsers\_counts"}\NormalTok{, ax}\OperatorTok{=}\NormalTok{ax, edgecolor}\OperatorTok{=}\StringTok{"black"}\NormalTok{,}
+\NormalTok{               cmap}\OperatorTok{=}\StringTok{"viridis"}\NormalTok{, legend}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\NormalTok{ax.set\_xticks([])}
+\NormalTok{ax.set\_yticks([])}
+
+\CommentTok{\# Add labels for the top 5 countries}
+\NormalTok{top\_5\_countries }\OperatorTok{=}\NormalTok{ countryUsers\_counts.nlargest(}\DecValTok{5}\NormalTok{).to\_dict()}
+\ControlFlowTok{for}\NormalTok{ x, y, name }\KeywordTok{in} \BuiltInTok{zip}\NormalTok{(world\_map.geometry.centroid.x,}
+\NormalTok{                      world\_map.geometry.centroid.y,}
+\NormalTok{                      world\_map[}\StringTok{"NAME"}\NormalTok{]):}
+    \ControlFlowTok{if}\NormalTok{ name }\KeywordTok{in}\NormalTok{ top\_5\_countries:}
+\NormalTok{        plt.text(x, y, name, fontsize}\OperatorTok{=}\DecValTok{7}\NormalTok{, color}\OperatorTok{=}\StringTok{"white"}\NormalTok{,}
+\NormalTok{                 path\_effects}\OperatorTok{=}\NormalTok{[path\_effects.withStroke(linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{,}
+\NormalTok{                                                       foreground}\OperatorTok{=}\StringTok{"black"}\NormalTok{)]}
+\NormalTok{                )}
+
+\NormalTok{plt.title(}\StringTok{"World Map showing Number of Users for each Country"}\NormalTok{)}
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{1.7HD_DataCleansing&TextAnalysis_Submission_files/figure-pdf/cell-5-output-1.pdf}}
+
+\(\rightarrow\) Via the colors and the annotations, the top 5 countries
+with most Academia users, from largest to smallest, are USA, India, UK,
+Germany, and Canada. This can be verified by printing out
+\texttt{top\_5\_countries}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(top\_5\_countries)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+{'USA': 10640, 'India': 3859, 'UK': 2963, 'Germany': 2533, 'Canada': 1573}
+\end{verbatim}
+
+\(\rightarrow\) The USA takes the lead in this list by a significant
+gap. It has 10640 users, which is 6781 more than the second-ranked
+country. This is quite obvious considering there were 4 USA universities
+in top 10 of
+\href{https://www.topuniversities.com/world-university-rankings/2024}{QS
+World University Rankings 2024} (as our datasets were recorded up until
+2024), with MIT taking top 1. This is the ranking that focuses on the
+academic aspect, weighing metrics such as
+\href{https://support.qs.com/hc/en-gb/articles/4405952675346-Academic-Reputation-Indicator}{Academic
+Reputation},
+\href{https://support.qs.com/hc/en-gb/articles/360019107580-Citations-per-Faculty-Indicator}{Citations
+per Faculty}, and
+\href{https://support.qs.com/hc/en-gb/articles/360021865579-International-Research-Network-Indicator}{International
+Research Network}. India (3859 users), despite
+\href{https://www.topuniversities.com/world-university-rankings/2024?countries=in}{not
+having universities in top 100 of QS Ranking}, it is still the origin of
+numerous excellent researchers and academia enthusiasts working and
+studying overseas. Four of the UK (2963 users) universities are in top
+10 of QS Ranking 2024, demonstrating a strong academic background of
+students from those institutions. Germany (2533 users) also has many
+research-based education providers with
+\href{https://www.topuniversities.com/world-university-rankings/2024?countries=de}{4
+universities in top 100 of QS Ranking 2024}. Canada (1573 users) is
+ranked fifth in the number of Academia users, having
+\href{https://www.topuniversities.com/world-university-rankings/2024?countries=ca}{3
+universities in top 100 of QS Ranking 2024}.
+
+\subsection{5. Radar chart showing people with Student, Teacher, Scholar
+badges their Reputation and casted Upvotes,
+Downvotes}\label{radar-chart-showing-people-with-student-teacher-scholar-badges-their-reputation-and-casted-upvotes-downvotes}
+
+\begin{itemize}
+\item
+  \textbf{Idea:} Our second visualisation is a radar chart with 3
+  attributes: \emph{Upvotes}, \emph{Downvotes}, \emph{Reputation}. In
+  \emph{Academia} site, via the
+  \href{https://academia.stackexchange.com/help/badges}{Badges
+  information} a \emph{Student} badge is given to a person with their
+  question having at least a score of 1, \emph{Scholar} for the one that
+  asks a question and accepts an answer, \emph{Teacher} for the one that
+  answers a question with a score of 1 or more. We want to visualise on
+  the radar chart each of these badges to see how they interact with the
+  community (casting \emph{Upvotes} and \emph{Downvotes}) and how the
+  community interacts with them (them gaining \emph{Reputation}).
+\item
+  We need \texttt{UpVotes}, \texttt{DownVotes}, and \texttt{Reputation}
+  columns from \texttt{users\_df} and \texttt{Name} column (name of the
+  badge) from \texttt{badges\_df}. Both these data frames can be merged
+  on the user ID column, which is the \texttt{Id} column in
+  \texttt{users\_df} and \texttt{UserId} column in \texttt{badges\_df},
+  so we have to rename one of them to match the other - we choose to
+  rename in-place the one in \texttt{users\_df}
+  (\texttt{users\_df.rename(columns=\{"Id":\ "UserId"\},\ inplace=True)}).
+  Then, proceed with the merge operation
+  \texttt{users\_df.merge(badges\_df,\ on="UserId")} and select the
+  necessary columns
+  (\texttt{{[}{[}"Name",\ "Reputation",\ "UpVotes",\ "DownVotes"{]}{]}}).
+  The merged data frame is called \texttt{badges\_users\_df}.
+\item
+  Next, we filter \texttt{badges\_users\_df} to only include the users
+  having our targetted badges
+  (\texttt{badges\_users\_df{[}badges\_users\_df{[}\ "Name"{]}.isin({[}"Student",\ "Teacher",\ "Scholar"{]}){]}}
+  - the \texttt{Name} columns only consists of either \texttt{Student},
+  \texttt{Teacher}, or \texttt{Scholar}; and rewrite
+  \texttt{badges\_users\_df}).
+\item
+  Based on the
+  \href{https://academia.stackexchange.com/help/whats-reputation}{Reputation
+  interpretation}, it is increased by 10 for a user if their question or
+  answer is upvoted, so it is a large difference visualising
+  \emph{Reputation} and \emph{Upvotes} in a single chart, thus it is
+  best that we normalise \emph{Reputation} to the number of upvotes a
+  user receives by dividing it by 10
+  (\texttt{badges\_users\_df{[}"Reputation"{]}\ /=\ 10} - this also
+  means converting \emph{Reputation} to the same scale as
+  \emph{Upvotes}).
+\item
+  Our main data for the chart \texttt{radial\_data} is prepared by
+  grouping users with \texttt{Student} badge (also \texttt{Teacher} and
+  \texttt{Scholar} groups), which can be performed using
+  \texttt{badges\_users\_df.groupby("Name")}. We then select the 3
+  specified attributes (3 columns -
+  \texttt{{[}{[}"Reputation",\ "UpVotes",\ "DownVotes"{]}{]}}) and take
+  the average (\texttt{.mean()}) \texttt{Reputation}, \texttt{UpVotes},
+  \texttt{DownVotes} for each group (\texttt{Student}, \texttt{Teacher},
+  \texttt{Scholar}).
+\item
+  To create the chart, we first generate its axes (\texttt{ax}), which
+  is a subplot \texttt{plt.subplots()} with figure size \emph{5 x 5
+  inches} (\texttt{figsize=(5,\ 5)}), using the earth's polar projection
+  similar to the radar's shape
+  (\texttt{subplot\_kw=\{"projection":\ "polar"\}}). \texttt{colors}
+  contains 3 distinct colors (for \texttt{Student}, \texttt{Teacher},
+  \texttt{Scholar}) from the color map \texttt{viridis} -
+  \texttt{plt.cm.get\_cmap("viridis",\ 3)}. The 3 attributes
+  (\texttt{Reputation}, \texttt{UpVotes}, \texttt{DownVotes}) are evenly
+  distanced in the circle (radar), and those positions can be generated
+  from \texttt{np.linspace(0,\ 2\ *\ np.pi,\ 3,\ endpoint=False)} (a
+  circle from angle \(0\) to \(2\pi\), each position is separated from
+  another with a distance of a circle divided by \(3\), and
+  \texttt{endpoint=False} excludes \(2\pi\) because including it results
+  in a redundant position after 3 positions \(0, 2\pi/3, 4\pi/3\)).
+  Converting into a list (\texttt{.tolist()}) helps us manipulate this
+  easier. This list is \texttt{positions}. To complete the circle, we
+  return to the first angle by appending it to our list
+  (\texttt{positions.append(positions{[}0{]})}).
+\item
+  To draw the values computed in \texttt{radial\_data}, we loop through
+  each of its rows (\texttt{enumerate(radial\_data.iterrows())}),
+  extracting the index (\texttt{idx}) and group's name with group's
+  attributes (\texttt{(grp\_name,\ grp\_atts)}) as a row represents a
+  group. \texttt{att\_values} is a list of average \texttt{Reputation},
+  \texttt{UpVotes}, \texttt{DownVotes} values (from
+  \texttt{grp\_atts.values.tolist()}) of the corresponding group
+  \texttt{grp\_name}. Similar to \texttt{positions}, we also append the
+  first value to \texttt{att\_values} to complete the circle
+  (\texttt{att\_values.append(att\_values{[}0{]})}). We can then draw 3
+  dots on 3 positions representing 3 values (the larger the value, the
+  further it is from the origin) by plotting the values
+  (\texttt{att\_values}) on their respective positions
+  (\texttt{positions}) using \texttt{ax.plot(positions,\ att\_values)},
+  with name appearing in legends (\texttt{label=grp\_name}), color for
+  the line connecting 3 dots is one in the created \texttt{colors} list
+  (\texttt{color=colors(idx)}). We fill the shape drawn by the lines
+  with
+  \texttt{ax.fill(positions,\ att\_values,\ color=colors(idx),\ alpha=0.25)}
+  (use the same color as the lines but with 25\% opacity -
+  \texttt{alpha=0.25}). We just drew, for example, the data of
+  \texttt{Student}; \texttt{Teacher} and \texttt{Scholar} are drawn
+  using the same approach (which should be since we are looping through
+  every group).
+\item
+  The largest circle is the x-axis, and we want to display the attribute
+  names on it at \texttt{positions}
+  (\texttt{ax.set\_xticks(positions{[}\ :-1{]})} - excluding the last
+  one that we appended as we only need 3 positions, not completing the
+  circle). After setting the positions, we display the names with
+  \texttt{ax.set\_xticklabels({[}"\ \ \ \ \ \ \ \ \ \ \ Reputation",\ "Upvotes",\ "Downvotes"{]})}.
+  \texttt{radial\_data.max()} creates a list of maximum values, each
+  from a column of \texttt{radial\_data}, and \texttt{.max()} picks the
+  largest from those maximum values, this is essentially the largest
+  value presented in our data and is used as the radius of the largest
+  circle (\texttt{max\_val}). There are 4 circles, the smallest has a
+  radius of \(1/4\) of \texttt{max\_val}, then \(2/4\), \(3/4\),
+  \(4/4\), that is why we have a list of radiuses
+  (\texttt{{[}max\_val\ *\ i\ /\ 4\ for\ i\ in\ range(1,\ 5){]}}) and
+  also our \texttt{y-ticks} on the y-axis. The positions of y-ticks are
+  set using \texttt{ax.set\_yticks(y\_ticks)}, and the values are
+  printed using
+  \texttt{ax.set\_yticklabels({[}f"\{int(tick)\}"\ for\ tick\ in\ y\_ticks{]},\ fontsize=8)}
+  (basically the integer values of radiuses, with \texttt{8} as font
+  size). \texttt{ax.set\_ylim(0,\ max\_val)} ensures the entire chart
+  from radius \texttt{0} to radius \texttt{max\_val} fits in the plot.
+  We can add a legend box denoting the groups on the upper right of the
+  plot at coordinates \texttt{(1.3,\ 1)} (avoid overlapping) with
+  \texttt{ax.legend(loc="upper\ right",\ bbox\_to\_anchor=(1.3,\ 1.1))},
+  and a title with
+  \texttt{plt.title("Radar\ Chart\ visualising\ Upvotes,\ Downvotes,\ Reputation\ for\ Student,\ Teacher,\ Scholar")}.
+\item
+  Lastly, we display the chart with \texttt{plt.show()}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Merge}
+\NormalTok{users\_df.rename(columns}\OperatorTok{=}\NormalTok{\{}\StringTok{"Id"}\NormalTok{: }\StringTok{"UserId"}\NormalTok{\}, inplace}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\NormalTok{badges\_users\_df }\OperatorTok{=}\NormalTok{ (users\_df}
+\NormalTok{                   .merge(badges\_df, on}\OperatorTok{=}\StringTok{"UserId"}\NormalTok{)}
+\NormalTok{                   [[}\StringTok{"Name"}\NormalTok{, }\StringTok{"Reputation"}\NormalTok{, }\StringTok{"UpVotes"}\NormalTok{, }\StringTok{"DownVotes"}\NormalTok{]]}
+\NormalTok{                  )}
+
+\CommentTok{\# Filter data frame to include only "Student", "Teacher", "Scholar"}
+\NormalTok{badges\_users\_df }\OperatorTok{=}\NormalTok{ badges\_users\_df[badges\_users\_df[}\StringTok{"Name"}\NormalTok{]}
+\NormalTok{                                      .isin([}\StringTok{"Student"}\NormalTok{, }\StringTok{"Teacher"}\NormalTok{, }\StringTok{"Scholar"}\NormalTok{])}
+\NormalTok{                                 ]}
+
+\CommentTok{\# Adjust Reputation to the same scale as other attributes}
+\NormalTok{badges\_users\_df[}\StringTok{"Reputation"}\NormalTok{] }\OperatorTok{/=} \DecValTok{10}
+
+\CommentTok{\# Compute average Reputation, Upvotes, Downvotes of each Student, Teacher, Scholar}
+\NormalTok{radial\_data }\OperatorTok{=}\NormalTok{ (badges\_users\_df}
+\NormalTok{               .groupby(}\StringTok{"Name"}\NormalTok{)}
+\NormalTok{               [[}\StringTok{"Reputation"}\NormalTok{, }\StringTok{"UpVotes"}\NormalTok{, }\StringTok{"DownVotes"}\NormalTok{]]}
+\NormalTok{               .mean()}
+\NormalTok{              )}
+
+\CommentTok{\# Create plot, axes}
+\NormalTok{\_, ax }\OperatorTok{=}\NormalTok{ plt.subplots(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{), subplot\_kw}\OperatorTok{=}\NormalTok{\{}\StringTok{"projection"}\NormalTok{: }\StringTok{"polar"}\NormalTok{\})}
+\NormalTok{colors }\OperatorTok{=}\NormalTok{ plt.cm.get\_cmap(}\StringTok{"viridis"}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{positions }\OperatorTok{=}\NormalTok{ np.linspace(}\DecValTok{0}\NormalTok{, }\DecValTok{2} \OperatorTok{*}\NormalTok{ np.pi, }\DecValTok{3}\NormalTok{, endpoint}\OperatorTok{=}\VariableTok{False}\NormalTok{).tolist()}
+\NormalTok{positions.append(positions[}\DecValTok{0}\NormalTok{])}
+
+\CommentTok{\# Drawing the values}
+\ControlFlowTok{for}\NormalTok{ idx, (grp\_name, grp\_atts) }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(radial\_data.iterrows()):}
+\NormalTok{    att\_values }\OperatorTok{=}\NormalTok{ grp\_atts.values.tolist()}
+\NormalTok{    att\_values.append(att\_values[}\DecValTok{0}\NormalTok{])}
+\NormalTok{    ax.plot(positions, att\_values, label}\OperatorTok{=}\NormalTok{grp\_name, color}\OperatorTok{=}\NormalTok{colors(idx))}
+\NormalTok{    ax.fill(positions, att\_values, color}\OperatorTok{=}\NormalTok{colors(idx), alpha}\OperatorTok{=}\FloatTok{0.25}\NormalTok{)}
+
+\CommentTok{\# Add attribute names}
+\NormalTok{ax.set\_xticks(positions[:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{])}
+\NormalTok{ax.set\_xticklabels([}\StringTok{"           Reputation"}\NormalTok{, }\StringTok{"Upvotes"}\NormalTok{, }\StringTok{"Downvotes"}\NormalTok{])}
+\CommentTok{\# Define y{-}tick values (radiuses)}
+\NormalTok{max\_val }\OperatorTok{=}\NormalTok{ radial\_data.}\BuiltInTok{max}\NormalTok{().}\BuiltInTok{max}\NormalTok{()}
+\NormalTok{y\_ticks }\OperatorTok{=}\NormalTok{ [max\_val }\OperatorTok{*}\NormalTok{ i }\OperatorTok{/} \DecValTok{4} \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{)]}
+\CommentTok{\# Add y{-}ticks}
+\NormalTok{ax.set\_yticks(y\_ticks)}
+\NormalTok{ax.set\_yticklabels([}\SpecialStringTok{f"}\SpecialCharTok{\{}\BuiltInTok{int}\NormalTok{(tick)}\SpecialCharTok{\}}\SpecialStringTok{"} \ControlFlowTok{for}\NormalTok{ tick }\KeywordTok{in}\NormalTok{ y\_ticks], fontsize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{ax.set\_ylim(}\DecValTok{0}\NormalTok{, max\_val)}
+\CommentTok{\# Add legend, title}
+\NormalTok{ax.legend(loc}\OperatorTok{=}\StringTok{"upper right"}\NormalTok{, bbox\_to\_anchor}\OperatorTok{=}\NormalTok{(}\FloatTok{1.3}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\NormalTok{plt.title(}\StringTok{"Upvotes, Downvotes, Reputation for Student, Teacher, Scholar"}\NormalTok{)}
+
+\CommentTok{\# Display chart}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{1.7HD_DataCleansing&TextAnalysis_Submission_files/figure-pdf/cell-7-output-1.pdf}}
+
+\(\rightarrow\) Users with \emph{Teacher} badge have the highest
+Reputation score. They actively answered the questions posted on the
+site to receive many upvotes from others, thus gaining Reputation
+(average score of 86 - in our chart, receiving 1 Upvote corresponds to
+increasing the Reputation score by 1). For \emph{Scholar} and
+\emph{Student}, the Reputation scores are 80 and 50 (roughly)
+respectively. This might be due to the fact that they did not answer as
+many questions as \emph{Teacher}-badge people, or the questions they
+replied to were not well-answered enough so those replies only received
+a few Upvotes. With this in mind, it seems that \emph{Teacher}-badge
+users are the ones with broad knowledge as knowing a wide range of
+topics and insights helped them answer the questions on the spot. This
+not only leads to them receiving a lot of Upvotes to gain high
+Reputation score, but also facilitates their understanding of other
+posts, casting an average of about 75 Upvotes, while that of
+\emph{Scholar} and \emph{Student} are just over 65 and 33 Upvotes.
+However, their thorough comprehension of content also results in them
+evaluating posts more strictly, casting more Downvotes than
+\emph{Scholar} and \emph{Student}, although the gaps between them are
+narrow in this metric, with each of them downvoting an average of less
+than 10 posts. From the last two metrics, we can see that the Academia
+community is pretty friendly, polite, and generous as they often upvote
+instead of downvoting. Overall, \emph{Teacher} users possess the highest
+scores in all 3 attributes, indicating their frequent interaction with
+other people (casting Upvotes and Downvotes) and the agreement from the
+community that they received (gaining high Reputation score).
+\emph{Scholar} people are quite close to \emph{Teacher} in the 3 metrics
+but \emph{Student}. Since this is an Academia site, an environment with
+mostly research-related content, it is understandable that most users
+are doctors of philosophy or professors, and are the owners of
+\emph{Teacher} badge.
+
+\subsection{\texorpdfstring{6. Bubble chart illustrating Number of Posts
+and Upvotes for each Question Type in
+\emph{5W1H}}{6. Bubble chart illustrating Number of Posts and Upvotes for each Question Type in 5W1H}}\label{bubble-chart-illustrating-number-of-posts-and-upvotes-for-each-question-type-in-5w1h}
+
+\begin{itemize}
+\item
+  \textbf{Idea:} Our third visualisation is a bubble chart encompassing
+  6 bubbles, each represents a type of question in
+  \href{https://safetyculture.com/topics/5w1h/}{\emph{5W1H}}. For
+  instance, the \emph{How} bubble's size visualises the number of
+  \emph{How} questions posted on the site, and its color (mapped to a
+  color scale) visualises the total number of upvotes for all \emph{How}
+  questions.
+\item
+  \texttt{posts\_df} and \texttt{votes\_df} are the data frames that we
+  use in this section. Similar to the radar chart's data, we must rename
+  \texttt{posts\_df}'s \texttt{Id} column to \texttt{PostId} in order to
+  match \texttt{PostId} column in \texttt{votes\_df} for the merging
+  purpose
+  (\texttt{posts\_df.rename(columns=\{"Id":\ "PostId"\},\ inplace=True)}).
+\item
+  To identify the question type in each question, we use regular
+  expression on the \texttt{Title} column of \texttt{posts\_df}
+  (\texttt{posts\_df{[}"Title"{]}.str.extract(r"\textbackslash{}b(What\textbar{}Who\textbar{}Which\textbar{}Where\textbar{}Why\textbar{}How)\textbackslash{}b")}
+  - extracting one of the \emph{What, Who, Which, Where, Why, How} but
+  only the separated words so \texttt{\textbackslash{}b} at the
+  beginning and the end). The extraction is stored in a newly created
+  column \texttt{QuestionType} (\texttt{posts\_df{[}"QuestionType"{]}}).
+\item
+  Getting the number of upvotes for all posts belonging to a question
+  type is a little complicated, so we get the number of upvotes for each
+  post first. This can be done with filtering \texttt{votes\_df} to
+  contain only the upvote rows -
+  \texttt{votes\_df{[}votes\_df{[}"VoteTypeId"{]}\ ==\ 2{]}}
+  (\href{https://meta.stackexchange.com/questions/2677/database-schema-documentation-for-the-public-data-dump-and-sede}{\texttt{VoteTypeId\ =\ 2}
+  means an upvote}). There can be, for example, 2 records of the same
+  \texttt{PostId} in \texttt{votes\_df}, and they both have
+  \texttt{VoteTypeId\ =\ 2}, that means a post receives 2 upvotes. As we
+  have filtered \texttt{votes\_df} to have only upvoting records, we can
+  create unique \texttt{PostId} groups (\texttt{.groupby("PostId")}) and
+  count the upvotes (the records) of each group (\texttt{.size()}). The
+  count column is called \texttt{Upvotes} (\texttt{.rename("Upvotes")}).
+\item
+  After deriving the needed columns for \texttt{posts\_df} and
+  \texttt{votes\_df}, we can merge them on matching \texttt{PostId}
+  (\texttt{posts\_df.merge(votes\_df,\ on="PostId")}). The merged data
+  frame is \texttt{posts\_votes\_df}.
+\item
+  For the counts of question types, we group each of them
+  (\texttt{.groupby("QuestionType")}) from the merged
+  \texttt{posts\_votes\_df} and count the number of posts in each
+  (\texttt{.size()}), this results in a Series \texttt{type\_count}. For
+  the number of upvotes of each question type, we also create groups of
+  question types, but instead of counting the instances of each group,
+  we take the sum of upvotes from these instances
+  (\texttt{{[}"Upvotes"{]}.sum()}), this results in a Series
+  \texttt{type\_upvotes}.
+\item
+  To create the bubble chart, we first generate axes (\texttt{ax}) for
+  it from \texttt{plt.subplots()} with the figure size \emph{14 x 4}
+  inches (\texttt{figsize=(14,\ 4)}). \texttt{question\_types} is a list
+  of all question types
+  \texttt{{[}"What",\ "Who",\ "Which",\ "Where",\ "Why",\ "How"{]}} that
+  will be useful later.
+\item
+  The bubbles representing question types (sorted in order as specified
+  in \texttt{question\_types} list). Their sizes are stored in a list
+  named \texttt{sizes}. This list is constructed by grabbing each type
+  (\texttt{q\_type}) sorted in order
+  (\texttt{for\ q\_type\ in\ question\_types}), getting its count
+  (number of questions) from \texttt{type\_count}
+  (\texttt{type\_count.get(q\_type)}) and multiplying by 2 just for
+  scaling (\texttt{*\ 2}) because we do not want our bubbles to be too
+  small. The colors of bubbles are stored in \texttt{colors}, each
+  (\texttt{q\_type}) is determined by its corresponding number of
+  upvotes (\texttt{type\_upvotes.get(q\_type)}).
+\item
+  Our chart is named \texttt{bubbles}, created from
+  \texttt{ax.scatter()} with the question types
+  (\texttt{question\_types}) as the x-axis labels, and for the y-axis
+  labels, they are \texttt{{[}1{]}\ *\ 6} (6 bubbles having the same
+  y-coordinate - horizontally aligned). They, from left to right, use
+  the established \texttt{sizes} and \texttt{colors}
+  (\texttt{s=sizes,\ c=colors}), and all have black outline
+  (\texttt{edgecolors="black"}). We use the \texttt{plasma} color scale
+  mapped with \texttt{c=colors} (\texttt{cmap="plasma"}).
+\item
+  We add a color bar for our \texttt{bubbles} chart for referencing the
+  number of upvotes (\texttt{plt.colorbar(bubbles,\ label="Upvotes")}).
+  As for the number of posts of each bubble, we add a text right below
+  it. This is performed by looping through each index \texttt{i}
+  (\texttt{for\ i\ in\ range(6)} as there 6 bubbles). For each i-th
+  bubble, we write the text below it (\texttt{ax.text(i,\ 0.96)} - at
+  x-coordinate \texttt{i} and y-coordinate \texttt{0.96}, the same for
+  all bubbles as they are also horizontally aligned). The content of the
+  text is \texttt{f"Posts:\ \{sizes{[}i{]}//2\}"} (dividing each size by
+  2 to get the correct count since we previously upscaled them for
+  visualising purposes). \texttt{ha="center"} puts the text at the
+  center, right below its bubble, and with \texttt{10} as font size
+  (\texttt{fontsize=10}).
+\item
+  The x-axis labels are the question types themselves
+  (\texttt{ax.set\_xticks(question\_types)}) and the x-axis title is
+  \emph{``Question Type''} (\texttt{ax.set\_xlabel("Question\ Type")}).
+  \texttt{ax.set\_xlim(-1,\ 6)} expands the left edge of the plot to
+  x-coordinate \texttt{-1} and the right edge to \texttt{6} to ensure
+  the first and last bubbles are fully contained inside. We want a blank
+  y-axis so \texttt{ax.set\_yticks({[}{]})}.
+  \texttt{ax.set\_title("Question\ Types:\ Number\ of\ Questions\ and\ Number\ of\ Upvotes")}
+  for customising the chart title.
+\item
+  Finally, we can easily display the chart with \texttt{plt.show()}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Rename posts\_df\textquotesingle{}s column to match votes\_df}
+\NormalTok{posts\_df.rename(columns}\OperatorTok{=}\NormalTok{\{}\StringTok{"Id"}\NormalTok{: }\StringTok{"PostId"}\NormalTok{\}, inplace}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+
+\CommentTok{\# Regex to extract question type}
+\NormalTok{posts\_df[}\StringTok{"QuestionType"}\NormalTok{] }\OperatorTok{=}\NormalTok{ (posts\_df[}\StringTok{"Title"}\NormalTok{]}
+\NormalTok{                            .}\BuiltInTok{str}
+\NormalTok{                            .extract(}\VerbatimStringTok{r"\textbackslash{}b(What|Who|Which|Where|Why|How)\textbackslash{}b"}\NormalTok{)}
+\NormalTok{                           )}
+
+\CommentTok{\# Filter votes\_df to contain only upvote rows (VoteTypeId=2)}
+\NormalTok{votes\_df }\OperatorTok{=}\NormalTok{ (votes\_df}
+\NormalTok{            [votes\_df[}\StringTok{"VoteTypeId"}\NormalTok{] }\OperatorTok{==} \DecValTok{2}\NormalTok{]}
+\NormalTok{            .groupby(}\StringTok{"PostId"}\NormalTok{)}
+\NormalTok{            .size()}
+\NormalTok{            .rename(}\StringTok{"Upvotes"}\NormalTok{)}
+\NormalTok{           )}
+
+\CommentTok{\# Merge posts\_df with votes\_df}
+\NormalTok{posts\_votes\_df }\OperatorTok{=}\NormalTok{ posts\_df.merge(votes\_df, on}\OperatorTok{=}\StringTok{"PostId"}\NormalTok{)}
+
+\CommentTok{\# Count and number of upvotes for each type}
+\NormalTok{type\_count }\OperatorTok{=}\NormalTok{ posts\_votes\_df.groupby(}\StringTok{"QuestionType"}\NormalTok{).size()}
+\NormalTok{type\_upvotes }\OperatorTok{=}\NormalTok{ posts\_votes\_df.groupby(}\StringTok{"QuestionType"}\NormalTok{)[}\StringTok{"Upvotes"}\NormalTok{].}\BuiltInTok{sum}\NormalTok{()}
+
+\CommentTok{\# Create the plot}
+\NormalTok{\_, ax }\OperatorTok{=}\NormalTok{ plt.subplots(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{4}\NormalTok{))}
+
+\CommentTok{\# List of question types}
+\NormalTok{question\_types }\OperatorTok{=}\NormalTok{ [}\StringTok{"What"}\NormalTok{, }\StringTok{"Who"}\NormalTok{, }\StringTok{"Which"}\NormalTok{, }\StringTok{"Where"}\NormalTok{, }\StringTok{"Why"}\NormalTok{, }\StringTok{"How"}\NormalTok{]}
+
+\CommentTok{\# Lists of bubble sizes and their respective colors}
+\NormalTok{sizes }\OperatorTok{=}\NormalTok{ [type\_count.get(q\_type) }\OperatorTok{*} \DecValTok{2} \ControlFlowTok{for}\NormalTok{ q\_type }\KeywordTok{in}\NormalTok{ question\_types]}
+\NormalTok{colors }\OperatorTok{=}\NormalTok{ [type\_upvotes.get(q\_type) }\ControlFlowTok{for}\NormalTok{ q\_type }\KeywordTok{in}\NormalTok{ question\_types]}
+
+\CommentTok{\# Draw the bubbles}
+\NormalTok{bubbles }\OperatorTok{=}\NormalTok{ ax.scatter(question\_types, [}\DecValTok{1}\NormalTok{] }\OperatorTok{*} \DecValTok{6}\NormalTok{, s}\OperatorTok{=}\NormalTok{sizes, c}\OperatorTok{=}\NormalTok{colors,}
+\NormalTok{                     edgecolors}\OperatorTok{=}\StringTok{"black"}\NormalTok{, cmap}\OperatorTok{=}\StringTok{"plasma"}\NormalTok{)}
+
+\CommentTok{\# Add color bar and number of questions of each type}
+\NormalTok{plt.colorbar(bubbles, label}\OperatorTok{=}\StringTok{"Upvotes"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{6}\NormalTok{):}
+\NormalTok{    ax.text(i, }\FloatTok{0.96}\NormalTok{, }\SpecialStringTok{f"Posts: }\SpecialCharTok{\{}\NormalTok{sizes[i]}\OperatorTok{//}\DecValTok{2}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{, ha}\OperatorTok{=}\StringTok{"center"}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{10}\NormalTok{)}
+
+\CommentTok{\# Customise the axes and chart title}
+\NormalTok{ax.set\_xticks(question\_types)}
+\NormalTok{ax.set\_xlabel(}\StringTok{"Question Type"}\NormalTok{)}
+\NormalTok{ax.set\_xlim(}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+\NormalTok{ax.set\_yticks([])}
+\NormalTok{ax.set\_title(}\StringTok{"Question Types: Number of Questions and Number of Upvotes"}\NormalTok{)}
+
+\CommentTok{\# Display chart}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{1.7HD_DataCleansing&TextAnalysis_Submission_files/figure-pdf/cell-8-output-1.pdf}}
+
+\(\rightarrow\) The most prominent insight of chart is the more posts
+there are of a question type, the more upvotes that question type gets.
+This is the same as saying you receive more upvotes if you post more.
+While it seems to be true for most question types, the pair \emph{Who}
+and \emph{Which} contradicts this. We verify this by printing out the
+number of upvotes for each question type (the \texttt{type\_upvotes}
+Series):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(type\_upvotes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+QuestionType
+How      84365
+What     50045
+Where     1832
+Which     1265
+Who       1338
+Why      18124
+Name: Upvotes, dtype: int64
+\end{verbatim}
+
+\(\rightarrow\) \emph{Who}, with only 153 posts compared to 198 posts of
+\emph{Which}, but with 1338 total upvotes, it surpasses \emph{Which}
+(1265 upvotes). Above these two, we have \emph{Where} with 248 posts and
+1832 upvotes. The three most common types of questions are \emph{How}
+(7595 posts and 84365 upvotes), \emph{What} (4259 posts and 50045
+upvotes), and \emph{Why} (931 posts and 18124 upvotes). We are
+interested in having a thorough understanding of the discrepancy between
+\emph{How} and \emph{Why} as they need people to elaborate on the
+questions for detailed answers, creating intriguing discussions on the
+Academia site. We can do this by printing the content of a few posts of
+each type. Starting with \emph{How}, we filter the rows with
+\texttt{posts\_votes\_df{[}posts\_votes\_df{[}"QuestionType"{]}\ ==\ "How"{]}}
+and print retrieve the column \texttt{{[}{[}"Title"{]}{]}} (we use
+\texttt{pd.set\_option(\textquotesingle{}display.max\_colwidth\textquotesingle{},\ 105)}
+before that to limit the number of characters of each post, this is for
+displaying the table without going beyond the right boundary of the
+paper).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pd.set\_option(}\StringTok{\textquotesingle{}display.max\_colwidth\textquotesingle{}}\NormalTok{, }\DecValTok{105}\NormalTok{)}
+\NormalTok{posts\_votes\_df[posts\_votes\_df[}\StringTok{"QuestionType"}\NormalTok{] }\OperatorTok{==} \StringTok{"How"}\NormalTok{][[}\StringTok{"Title"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+& Title \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+15 & How do I select a graduate program? \\
+19 & How many physician-scientists pursue academic tracks? \\
+74 & University rank/stature - How much does it affect
+one\textquotesingle s career post-Ph.D? \\
+82 & How do you judge the quality of a journal? \\
+98 & How to find a good topic for a PhD research proposal? \\
+... & ... \\
+134696 & How do I reframe getting an MPhil instead of a PhD the first
+time round, in the context of applying f... \\
+134750 & How to get a single issue of a print journal \\
+134766 & How do I motivate my PhD students to attend seminars \\
+134778 & How to properly capitalize a title in APA 7 style? \\
+134782 & How best can I explain the professional ethics of GenAI to
+students? \\
+\end{longtable}
+
+\(\rightarrow\) \emph{How} questions focus on solving specific problems,
+and there are various in different environments, not just in Academia.
+In this field, one bachelor's degree receiver may ask \emph{``How do I
+select a graduate program?''} to embark on a new part of their academic
+journey. \emph{``How to find a good topic for a PhD research
+proposal?''} might be the enquiry of a student looking for the topic of
+their PhD thesis. For teachers, the lack of students in their classes is
+perhaps the reason for the question \emph{``How do I motivate my PhD
+students to attend seminars?''}.
+
+\(\rightarrow\) We can apply the same method to extract the \emph{Why}
+questions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{posts\_votes\_df[posts\_votes\_df[}\StringTok{"QuestionType"}\NormalTok{] }\OperatorTok{==} \StringTok{"Why"}\NormalTok{][[}\StringTok{"Title"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+& Title \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+652 & Why don\textquotesingle t researchers publish failed
+experiments? \\
+801 & Why do universities place a weight on GRE/TOEFL scores? \\
+1050 & Why does professor prohibit me talking to people? \\
+1084 & Why do so few universities offer OpenCourseWare videos of their
+lessons? \\
+1184 & Why do universities have to spend money on journals? \\
+... & ... \\
+134161 & Why do most US regional colleges/universities/institutions have
+poor reputations in academic circles? \\
+134220 & Why has arXiv been posting articles later? \\
+134232 & Why does the status of my manuscript keep changing? \\
+134354 & Why can the same person sit on the boards of trustees of
+multiple schools? Has this caused problems? \\
+134609 & Why do a lot of publications ignore better results from other
+papers // compare only to old results (... \\
+\end{longtable}
+
+\(\rightarrow\) These questions primarily express curiosity on certain
+aspects in academia, like \emph{``Why don't researchers publish failed
+experiments?''}. The question \emph{``Why do a lot of publications
+ignore better results from other papers compare only to old results
+(example in deep learning and biomed)?''} was probably coming from a
+person who was pursuing research work in deep learning or biomedical
+science and they were confessing their worries on the unfairness of
+academia.
+
+\subsection{7. Combo chart (line and scatter) visualising Top 3 Highest
+and Top 3 Lowest Days of Average Comments' Sentiment
+Scores}\label{combo-chart-line-and-scatter-visualising-top-3-highest-and-top-3-lowest-days-of-average-comments-sentiment-scores}
+
+\begin{itemize}
+\item
+  \textbf{Idea:} For this one, we will analyse the sentiment of every
+  comment posted on Academia site, find the average sentiment score of
+  each day, and plot the 3 days with the highest sentiment scores and 3
+  days with the lowest ones on a line chart. Besides the main line
+  showing the average scores, there will also be the scores of
+  individual comments for each selected day shown on the chart.
+\item
+  To start with, we use regular expressions to extract the creation date
+  of each comment. Values in the \texttt{CreationDate} column of
+  \texttt{comments\_df} are in the form \emph{YYYY-MM-DDThh:mm:ss}. Each
+  date is presented by the first 10 letters (8 digits and 2 hyphens).
+  The first 4 digits (\emph{YYYY}) are grabbed with
+  \texttt{\textbackslash{}d\{4\}} in regex (\texttt{\textbackslash{}d}
+  tag stands for digit), then a hyphen \texttt{-}, and the next 2 digits
+  (\texttt{\textbackslash{}d\{2\}} - \emph{MM}), another hyphen
+  \texttt{-}, and the last 2 digits (\texttt{\textbackslash{}d\{2\}} -
+  \emph{DD}). The extractions are put in the created \texttt{Date}
+  column of \texttt{comments\_df}.
+\item
+  To analyse the sentiment of each comment, we first need to initialise
+  the analyser \texttt{SentimentIntensityAnalyzer()} and name it as
+  \texttt{sent\_analyser}. The comments are stored in the \texttt{Text}
+  column of \texttt{comments\_df}, so we can analyse each of them using
+  \texttt{comments\_df{[}"Text"{]}.apply()}, inputting each
+  \texttt{text} as each comment (\texttt{lambda\ text:}) into
+  \texttt{sent\_analyser.polarity\_scores()}, and get the
+  \texttt{compound} score of each (considering all the negative,
+  neutral, positive sentiments of each comment into measurement; we use
+  this type of score as it gives a holistic view of the comments). The
+  scores are stored in the new \texttt{SentimentScore} column of
+  \texttt{comments\_df}.
+\item
+  Now that we have had the sentiment scores, we can group them by date
+  (\texttt{comments\_df.groupby("Date")\ {[}"SentimentScore"{]}}) and
+  calculate the daily average sentiment (average sentiment of each day -
+  \texttt{.mean()}). The resulting Series is called
+  \texttt{daily\_avg\_sentiment}.
+\item
+  To identify the 3 dates with highest sentiment scores, we use
+  \texttt{.nlargest(3)} on the computed Series
+  \texttt{daily\_avg\_sentiment}, then retrieve the dates into
+  \texttt{top\_3\_dates} using \texttt{.index}. Same thing applies for
+  the 3 dates with lowest sentiment scores (\texttt{bottom\_3\_dates} -
+  \texttt{daily\_avg\_sentiment.nsmallest(3).index}). Then, we combine
+  these two into a Series of selected dates (\texttt{selected\_dates}),
+  including top 3 and bottom 3 dates
+  (\texttt{top\_3\_dates.union(bottom\_3\_dates)}).
+\item
+  After getting the needed dates, we can filter our
+  \texttt{comments\_df} to only contain the data of these dates
+  (\texttt{comments\_df{[}comments\_df{[}"Date"{]}.isin(selected\_dates){]}}
+  - filter rows where dates of \texttt{Date} column is in
+  \texttt{selected\_dates}). We call the filtered data frame
+  \texttt{selected\_data}.
+\item
+  The line chart needs the dates to be ordered, so we must sort them by
+  converting the dates of \texttt{Date} column of
+  \texttt{selected\_data} into \emph{datetime} format
+  (\texttt{pd.to\_datetime(selected\_data{[}"Date"{]})}), then sorting
+  the dates in-place
+  (\texttt{selected\_data.sort\_values("Date",\ inplace=True)}). After
+  sorting, we convert these values back to string format for visualising
+  purposes using
+  \texttt{selected\_data{[}"Date"{]}.dt.strftime(\textquotesingle{}\%Y-\%m-\%d\textquotesingle{})}
+  (\texttt{\%Y,\ \%m,\ \%d} grabs year, month, day respectively,
+  separated by hyphens).
+\item
+  Just like the calculation of daily average sentiment score that we
+  implemented before, but this time instead of computing the data for
+  all days (\texttt{comments\_df}), we only consider the data of 6
+  chosen days and sorted by dates (\texttt{selected\_data}). After
+  grouping and calculating the average, the \texttt{Date} column is set
+  as the index column, so we must use \texttt{.reset\_index()} to put
+  \texttt{Date} back to be a normal column that needs to be used as the
+  x-axis of our chart. The computed data frame is called
+  \texttt{avg\_data}.
+\item
+  To create the plot, we use \texttt{plt.figure(figsize=(10,\ 4))} (a
+  figure of size \emph{10 x 4} inches). The line of daily average
+  sentiment is drawn from
+  \texttt{sns.lineplot(x="Date",\ y="SentimentScore",\ data=avg\_data)},
+  using the computed data (\texttt{data=avg\_data}) with its
+  \texttt{Date} column as the x-axis (\texttt{x}) and
+  \texttt{SentimentScore} column as the y-axis (\texttt{y}), customising
+  the line width (\texttt{linewidth=2}), line color
+  (\texttt{color="black"}), and the label that appears in the legend box
+  (\texttt{label="Daily\ Average"}). For the individual sentiment scores
+  (points), we use
+  \texttt{sns.scatterplot(x="Date",\ y="SentimentScore",\ data=selected\_data,\ s=20},
+  with data of individual selected days before grouping as the data
+  source (\texttt{data=selected\_data}), the x-axis as well as y-axis
+  are the same as the average line
+  (\texttt{x="Date",\ y="SentimentScore"}), and the size of each point
+  (\texttt{s=20}).
+\item
+  We add a grey dashed line \emph{y = 0} to mark the point where the
+  sentiment is neutral, so all points representing comments above it are
+  classified as positive, below it are negative, and on it are neutral.
+  This line is created by
+  \texttt{plt.axhline(0,\ color="gray",\ linestyle="-\/-",\ linewidth=0.8,\ alpha=0.7)}
+  (line \emph{y = 0} - \texttt{0}, grey as color -
+  \texttt{color="gray"}, dashed line style - \texttt{linestyle="-\/-"},
+  line width - \texttt{linewidth=0.8}, and 70\% opacity -
+  \texttt{alpha=0.7}). We customise the x-axis and y-axis titles with
+  \texttt{plt.xlabel("Date")} and
+  \texttt{plt.ylabel("Sentiment\ Score")} respectively. A legend
+  denoting the average line is added using
+  \texttt{plt.legend(loc="upper\ right",\ bbox\_to\_anchor=(1.3,\ 1))}
+  (at the top right corner - \texttt{loc="upper\ right"}, at position
+  that avoids overlapping with the chart -
+  \texttt{bbox\_to\_anchor=(1.3,\ 1)}).
+\item
+  Finally, we set a title for our chart
+  (\texttt{plt.title("Top\ 3\ Highest\ and\ Top\ 3\ Lowest\ Days\ of\ Average\ Comments\textquotesingle{}\ Sentiment\ Scores")})
+  and display it (\texttt{plt.show()}).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Extract date using regex}
+\NormalTok{comments\_df[}\StringTok{"Date"}\NormalTok{] }\OperatorTok{=}\NormalTok{ (comments\_df[}\StringTok{"CreationDate"}\NormalTok{]}
+\NormalTok{                       .}\BuiltInTok{str}
+\NormalTok{                       .extract(}\VerbatimStringTok{r"(\textbackslash{}d}\SpecialCharTok{\{4\}}\VerbatimStringTok{{-}\textbackslash{}d}\SpecialCharTok{\{2\}}\VerbatimStringTok{{-}\textbackslash{}d}\SpecialCharTok{\{2\}}\VerbatimStringTok{)"}\NormalTok{))}
+
+\CommentTok{\# Calculate sentiment scores}
+\NormalTok{sent\_analyser }\OperatorTok{=}\NormalTok{ SentimentIntensityAnalyzer()}
+\NormalTok{comments\_df[}\StringTok{"SentimentScore"}\NormalTok{] }\OperatorTok{=}\NormalTok{ (comments\_df[}\StringTok{"Text"}\NormalTok{]}
+\NormalTok{                                 .}\BuiltInTok{apply}\NormalTok{(}\KeywordTok{lambda}\NormalTok{ text:}
+\NormalTok{                                        sent\_analyser.polarity\_scores(text)}
+\NormalTok{                                        [}\StringTok{"compound"}\NormalTok{])}
+\NormalTok{                                )}
+
+\CommentTok{\# Calculate daily average sentiment score}
+\NormalTok{daily\_avg\_sentiment }\OperatorTok{=}\NormalTok{ comments\_df.groupby(}\StringTok{"Date"}\NormalTok{)[}\StringTok{"SentimentScore"}\NormalTok{].mean()}
+
+\CommentTok{\# Identify top 3 highest and lowest sentiment days}
+\NormalTok{top\_3\_dates }\OperatorTok{=}\NormalTok{ daily\_avg\_sentiment.nlargest(}\DecValTok{3}\NormalTok{).index}
+\NormalTok{bottom\_3\_dates }\OperatorTok{=}\NormalTok{ daily\_avg\_sentiment.nsmallest(}\DecValTok{3}\NormalTok{).index}
+\NormalTok{selected\_dates }\OperatorTok{=}\NormalTok{ top\_3\_dates.union(bottom\_3\_dates)}
+
+\CommentTok{\# Filter data for selected days}
+\NormalTok{selected\_data }\OperatorTok{=}\NormalTok{ comments\_df[comments\_df[}\StringTok{"Date"}\NormalTok{].isin(selected\_dates)]}
+
+\CommentTok{\# Sort by date}
+\NormalTok{selected\_data[}\StringTok{"Date"}\NormalTok{] }\OperatorTok{=}\NormalTok{ pd.to\_datetime(selected\_data[}\StringTok{"Date"}\NormalTok{])}
+\NormalTok{selected\_data.sort\_values(}\StringTok{"Date"}\NormalTok{, inplace}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\NormalTok{selected\_data[}\StringTok{"Date"}\NormalTok{] }\OperatorTok{=}\NormalTok{ selected\_data[}\StringTok{"Date"}\NormalTok{].dt.strftime(}\StringTok{\textquotesingle{}\%Y{-}\%m{-}}\SpecialCharTok{\%d}\StringTok{\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Data frame of daily average sentiment}
+\NormalTok{avg\_data }\OperatorTok{=}\NormalTok{ selected\_data.groupby(}\StringTok{"Date"}\NormalTok{)[}\StringTok{"SentimentScore"}\NormalTok{].mean().reset\_index()}
+
+\CommentTok{\# Create the plot}
+\NormalTok{plt.figure(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{4}\NormalTok{))}
+
+\CommentTok{\# Draw line for daily average sentiment score}
+\NormalTok{sns.lineplot(x}\OperatorTok{=}\StringTok{"Date"}\NormalTok{, y}\OperatorTok{=}\StringTok{"SentimentScore"}\NormalTok{, data}\OperatorTok{=}\NormalTok{avg\_data,}
+\NormalTok{             linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, color}\OperatorTok{=}\StringTok{"black"}\NormalTok{, label}\OperatorTok{=}\StringTok{"Daily Average"}\NormalTok{)}
+
+\CommentTok{\# Draw scatter points for individual sentiment scores}
+\NormalTok{sns.scatterplot(x}\OperatorTok{=}\StringTok{"Date"}\NormalTok{, y}\OperatorTok{=}\StringTok{"SentimentScore"}\NormalTok{, data}\OperatorTok{=}\NormalTok{selected\_data, s}\OperatorTok{=}\DecValTok{20}\NormalTok{)}
+
+\CommentTok{\# Customise the plot}
+\NormalTok{plt.axhline(}\DecValTok{0}\NormalTok{, color}\OperatorTok{=}\StringTok{"gray"}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{"{-}{-}"}\NormalTok{, linewidth}\OperatorTok{=}\FloatTok{0.8}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{)}
+\NormalTok{plt.xlabel(}\StringTok{"Date"}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{"Sentiment Score"}\NormalTok{)}
+\NormalTok{plt.legend(loc}\OperatorTok{=}\StringTok{"upper right"}\NormalTok{, bbox\_to\_anchor}\OperatorTok{=}\NormalTok{(}\FloatTok{1.3}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\NormalTok{plt.title(}\StringTok{"Top 3 Highest \& Top 3 Lowest Days of Average Comments\textquotesingle{} Sentiment Scores"}\NormalTok{)}
+
+\CommentTok{\# Display the chart}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{1.7HD_DataCleansing&TextAnalysis_Submission_files/figure-pdf/cell-12-output-1.pdf}}
+
+\(\rightarrow\) From 2011 to 2024, the 3 days with highest comments'
+sentiment scores were \emph{2011-11-15}, \emph{2011-11-29}, and
+\emph{2012-06-09}, while \emph{2011-11-14}, \emph{2012-02-07}, and
+\emph{2012-03-01} were the 3 lowest days. We can examine the 3 highest
+days using the following code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pd.set\_option(}\StringTok{\textquotesingle{}display.max\_colwidth\textquotesingle{}}\NormalTok{, }\DecValTok{85}\NormalTok{)}
+\NormalTok{(selected\_data[selected\_data[}\StringTok{"Date"}\NormalTok{]}
+\NormalTok{               .isin([}\StringTok{"2011{-}11{-}15"}\NormalTok{, }\StringTok{"2011{-}11{-}29"}\NormalTok{, }\StringTok{"2012{-}06{-}09"}\NormalTok{])}
+\NormalTok{              ]}
+\NormalTok{              [[}\StringTok{"Text"}\NormalTok{, }\StringTok{"Date"}\NormalTok{, }\StringTok{"SentimentScore"}\NormalTok{]]}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+& Text & Date & SentimentScore \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1513 & For publicly available data, transparency would dictate that code
+should go from ... & 2011-11-15 & 0.8625 \\
+1466 & This answer reminds me of Richard Dawkins\textquotesingle{}
+description of the height of trees in ... & 2011-11-29 & 0.8238 \\
+2304 & I always tell my students to include the line "My advisor Jeff
+Erickson suggested... & 2012-06-09 & 0.5267 \\
+2305 & "Personal communication" is what you write when
+you\textquotesingle ve given up on citing anythin... & 2012-06-09 &
+0.8885 \\
+2306 & Do you care more about learning stuff or making believe others
+that you are learn... & 2012-06-09 & 0.4939 \\
+\end{longtable}
+
+\(\rightarrow\) \emph{2011-11-15} and \emph{2011-11-29} were the two
+days with only one comment each, and these comments got very high
+sentiment scores, \emph{0.8625} and \emph{0.8238} respectively. The
+former states the best practices in research data sharing, addressing
+its importance, downside, and confidentiality, and suggesting using
+example data. The latter while criticising grade inflation, did it in a
+respectful manner, expressing humor and avoiding negativity. The comment
+that received the highest sentiment score in our analysis
+(\emph{0.8885}) came on the \emph{2012-06-09}, it confessed the similar
+emotions of people when encountering a relatable situation like
+\emph{``given up''}.
+
+\(\rightarrow\) For the 3 lowest days:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(selected\_data[selected\_data[}\StringTok{"Date"}\NormalTok{]}
+\NormalTok{               .isin([}\StringTok{"2011{-}11{-}14"}\NormalTok{, }\StringTok{"2012{-}02{-}07"}\NormalTok{, }\StringTok{"2012{-}03{-}01"}\NormalTok{])}
+\NormalTok{              ]}
+\NormalTok{              [[}\StringTok{"Text"}\NormalTok{, }\StringTok{"Date"}\NormalTok{, }\StringTok{"SentimentScore"}\NormalTok{]]}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+& Text & Date & SentimentScore \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1512 & Publishing code is one thing, but what about the data? If you are
+using publicly ... & 2011-11-14 & -0.4039 \\
+2872 & {[}Mendeley{]}(http://www.mendeley.com/) has the groups feature,
+but I don\textquotesingle t think th... & 2012-02-07 & 0.0000 \\
+2873 & You can hold a discussion in a Mendeley group, but not
+specifically about one pap... & 2012-02-07 & -0.6956 \\
+424 & In particular, do you mean personal troubles (like anxiety or
+depression or impos... & 2012-03-01 & -0.9468 \\
+425 & See {[}this related
+question{]}(http://cstheory.stackexchange.com/questions/3111/funn... &
+2012-03-01 & 0.0000 \\
+426 & Professional troubles. But also personal troubles that arise out
+of professional ... & 2012-03-01 & -0.8750 \\
+427 & Given all of the suggestions to utilize text searches more
+effectively I might ha... & 2012-03-01 & 0.7902 \\
+\end{longtable}
+
+\(\rightarrow\) The only comment on \emph{2011-11-14} was very negative
+(a negative sentiment score of \emph{-0.4039}) as it crucified the post
+owner for not publishing the data used for the code, uncomplying with
+the transparency standard. Some other negative comments were, in fact,
+wrongly measured by our \texttt{SentimentIntensityAnalyzer()} model, for
+instance, the one on \emph{2012-03-01} with the word \emph{``troubles''}
+scored \emph{-0.875}, or another one on the same day scored
+\emph{-0.9468} (the lowest of all) with seeming negative words such as
+\emph{``troubles'', ``anxiety'', ``depression'', ``impostor syndrome'',
+``rejections'', ``irresponsible''}, while the comment itself was asking
+for clarifications from the post author.
+
+\(\rightarrow\) Overall, our model performed fairly well on rating the
+sentiment of comments, however, it weighed the individual words too high
+instead of looking at the whole context of the sentence, which
+imprecisely downgraded the neutral comments.
+
+\subsection{8. Word Cloud of used Tags}\label{word-cloud-of-used-tags}
+
+\begin{itemize}
+\item
+  \textbf{Idea:} Our last visualisation is straightforward. It is a word
+  cloud that displays all tags gathered from the Academia site, with the
+  more frequently used ones having bigger sizes.
+\item
+  The \texttt{TagName} column of \texttt{tags\_df} contains all the used
+  tags, with each corresponding to its count in the \texttt{Count}
+  column. When we apply
+  \texttt{zip(tags\_df{[}"TagName"{]},\ tags\_df{[}"Count"{]})}, we
+  essentially create pairs of tag names and their counts (each pair
+  consists of \texttt{TagName} and \texttt{Count} in the same row of
+  \texttt{tags\_df}). Applying \texttt{dict()} to the pairs will turn
+  each of them into a key-value pair in a dictionary, with tag name as
+  the key and its count as the value. This dictionary is called
+  \texttt{tags\_counts}.
+\item
+  After preparing the data, we can generate the word cloud (called
+  \texttt{word\_cloud}) using the imported \texttt{WordCloud} module
+  with Full HD resolution (\texttt{width=1920,\ height=1080}), white
+  background color (\texttt{background\_color="white"}), and
+  \texttt{viridis} color map (\texttt{colormap="viridis"}). We feed
+  \texttt{tags\_counts} into \texttt{.generate\_from\_frequencies()} as
+  the data for the word cloud.
+\item
+  We then generate a figure of \emph{10 x 5} inches
+  (\texttt{plt.figure(figsize=(10,\ 5))}), render the created
+  \texttt{word\_cloud} on it (\texttt{plt.imshow(word\_cloud)}), hide
+  the unnecessary axes (\texttt{plt.axis("off")}), assign a title for
+  the plot (\texttt{plt.title("Word\ Cloud\ of\ Tags")}), and finally
+  display it (\texttt{plt.show()}).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Prepare data for the word cloud}
+\NormalTok{tags\_counts }\OperatorTok{=} \BuiltInTok{dict}\NormalTok{(}\BuiltInTok{zip}\NormalTok{(tags\_df[}\StringTok{"TagName"}\NormalTok{], tags\_df[}\StringTok{"Count"}\NormalTok{]))}
+
+\CommentTok{\# Generate the word cloud}
+\NormalTok{word\_cloud }\OperatorTok{=}\NormalTok{ WordCloud(width}\OperatorTok{=}\DecValTok{1920}\NormalTok{,}
+\NormalTok{                       height}\OperatorTok{=}\DecValTok{1080}\NormalTok{,}
+\NormalTok{                       background\_color}\OperatorTok{=}\StringTok{"white"}\NormalTok{,}
+\NormalTok{                       colormap}\OperatorTok{=}\StringTok{"viridis"}
+\NormalTok{).generate\_from\_frequencies(tags\_counts)}
+
+\CommentTok{\# Render the word cloud}
+\NormalTok{plt.figure(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+\NormalTok{plt.imshow(word\_cloud)}
+
+\CommentTok{\# Customise the word cloud}
+\NormalTok{plt.axis(}\StringTok{"off"}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{"Word Cloud of Tags"}\NormalTok{)}
+
+\CommentTok{\# Display the word cloud}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{1.7HD_DataCleansing&TextAnalysis_Submission_files/figure-pdf/cell-15-output-1.pdf}}
+
+\(\rightarrow\) Since this is the Academia site, it is unsurprisingly
+that these words are all related to the field more or less.
+\texttt{publications} along with \texttt{phd} are the two most frequent
+tags as they cover numerous subtopics (other less frequent tags) in
+academia. One of people's goals in the academic field is always to have
+high-quality publications, so understandably, most posted enquiries are
+associated with the \texttt{publications} tag. Those questions came from
+professors, doctors of philosophy, PhD candidates, or even undergraduate
+students. Some questions might be related to more specific topics in
+\texttt{publications}, such as the research process
+(\texttt{research-process} tag), writing journals, a type of scholarly
+publication (\texttt{journals} tag), citing papers (\texttt{citations}
+tag), submitting papers (\texttt{paper-submission} tag), or dealing with
+feedback (\texttt{peer-review} tag). \texttt{phd} is a pivotal stage in
+academic career, this comprises of applying for PhD programs
+(\texttt{graduate-school} and \texttt{graduate-admissions} tags),
+finding supervisors (\texttt{supervision} tag) and topics for thesis
+(\texttt{thesis} tag), preparing substantial funding for the research
+program (\texttt{funding} tag). It is quite interesting to see that the
+most prevalent research topics are mathematics (\texttt{mathematics}
+tag) and computer science (\texttt{computer-science} tag - but less
+common than mathematics). The majority of users believe that USA
+(\texttt{united-states} tag) is one of the best countries to study a PhD
+program or to do postdoctoral research (\texttt{postdocs} tag) since USA
+is the home of some most prestigious research institutions in the world
+as analysed from the world map. Some least frequent tags are
+\texttt{bachelor} and \texttt{research-undergraduate} as the research
+work is quite uncommon for students enrolling in a bachelor's degree or
+in undergraduate level. The \texttt{early-career} tag is related to
+another unpopular notion in academia as it requires commitment,
+dedication, and passion to pursue a long track of research study prior
+to starting a career, usually 6 more years of postgraduate (2 masters
+years and 4 PhD years), contrasting to a potential early career in
+industry work.
+
+\subsection{9. Potential data privacy and ethics
+issues}\label{potential-data-privacy-and-ethics-issues}
+
+\subsubsection{9.1. How data privacy and ethics issues
+arise}\label{how-data-privacy-and-ethics-issues-arise}
+
+We have used raw datasets to create different visualisations and have
+gained valuable insights into them, however, it is concerning that these
+might raise potential data breach issues. In particular, the downloaded
+datasets contain information from users on the Academia site. While the
+identity of each individual is hidden by separating their name from
+their activities, that is each user's name (\texttt{DisplayName} column)
+is stored in the \texttt{Users} table and their activities in other
+tables (their comments in \texttt{Comments} table, posts in
+\texttt{Posts}, upvotes and downvotes in \texttt{Votes}), it can still
+be identified when gathering these pieces (connecting the attributes of
+a row). For instance, by assessing the \texttt{Posts} dataset, if we
+know an acquaintance's post (perhaps they have shown to us once), we can
+search for that post in the table (post title in the \texttt{Title}
+column and post content in the \texttt{Body} column) and find other data
+of it such as views (\texttt{ViewCount} attribute) or especially the
+user ID of the post owner (\texttt{OwnerUserId} attribute) as they all
+belong to the same row. This becomes more dangerous if supported by data
+linkage, essentially the merging of different datasets, so despite the
+separation of names and the generation of user IDs, these still serve as
+an identifier that facilitates linking between data of an individual,
+with the primary step is merging \texttt{Posts} table with
+\texttt{Users} table by matching their respective \texttt{OwnerUserId}
+and \texttt{Id}. Using the same approach for the subsequent merging
+operations, matching \texttt{UserId} in both \texttt{Comments} and
+\texttt{Votes} tables with \texttt{Id} in \texttt{Users} table, we have
+the combined table from \texttt{Users}, \texttt{Posts},
+\texttt{Comments}, and \texttt{Votes} tables. As of now, it is feasible
+know other posts of the identified user (\texttt{Title} and
+\texttt{Body} columns of \texttt{Posts} table at rows having the
+identified \texttt{OwnerUserId}), their comments (\texttt{Text} column
+of \texttt{Comments} table at rows sharing the identified
+\texttt{UserId}), and posts they upvoted or downvoted
+(\texttt{VoteTypeId\ =\ 2} matches \texttt{UserId} that upvoted
+\texttt{PostId}, all in the \texttt{Votes} table, and the same goes for
+\texttt{VoteTypeId\ =\ 3} indicating downvotes). Note that \texttt{Id},
+\texttt{UserId}, and \texttt{OwnerUserId} in different tables all refer
+to the same user ID attribute, and this ID associates with the user's
+name (\texttt{DisplayName} column in \texttt{Users} table). In general,
+by merging different datasets using a unique identifier, we can derive
+any attribute of an exact person (any column that constituted the merged
+datasets). This process is also called re-identification, an inverse of
+de-identification or anonymisation (hiding names).
+
+\subsubsection{9.2. Consequences of
+re-identification}\label{consequences-of-re-identification}
+
+The consequences related to social aspects of re-identification cannot
+be neglected. With our above examples, if all questions posted (posts)
+of a person are known by others, they might face doubts, such as this
+person was asking simple and obvious questions, they were uninformed, or
+not as intelligent as people see them; if their comments are disclosed,
+they might be criticised on giving the wrong answers; or with the
+information about posts they downvoted, conflicts on the internet will
+be inevitable. Although these data do help the site's admins monitor
+users' behaviors and demands, if any of these are leaked, they will be
+at risk of being traumatised.
+
+\subsubsection{9.3. Current data privacy laws and what needs to
+change}\label{current-data-privacy-laws-and-what-needs-to-change}
+
+Currently, data privacy laws like \href{https://gdpr-info.eu/}{GDPR} and
+\href{https://www.oaic.gov.au/privacy/privacy-legislation/the-privacy-act}{The
+Privacy Act 1988} do address re-identification but only to a certain
+extent. GDPR allows ``sufficient anonymisation'' without explicitly
+stating what attributes should be removed to satisfy that, and the
+Privacy Act 1988 focuses on de-identification, not the prevention of
+re-identification. From our analysis in this section, it is a caution
+for these laws to be modified in such a way that directly resolves
+re-identification and prevents it exhaustively.
+
+\subsubsection{9.4. Solutions for users' internet
+safety}\label{solutions-for-users-internet-safety}
+
+It will be insufficient for users if they only depend on changes from
+the data privacy laws. Instead, each person has their own responsibility
+to protect themselves. Being anonymous on the internet is a wise option,
+that is, avoid using your real name as the username to prevent people
+from knowing you even if they know your \texttt{DisplayName}. Also,
+never show any of your activities (posts, comments, etc.) to others to
+hinder the data linkage or re-identification process.
+
+\subsection{10. Conclusion}\label{conclusion}
+
+In summary, we loaded 8 \textbf{Academia - StackExchange} datasets
+(\emph{Badges, Comments, PostHistory, PostLinks, Posts, Tags, Users,
+Votes}) and converted them into \texttt{.csv} format using our created
+function. To create our first visualisation, \emph{The world map showing
+top 5 countries with most users joining the site}, we applied regular
+expressions (regexes) to extract the country names and count their
+frequencies. For the second one, \emph{The radar chart showing Upvotes,
+Downvotes, Reputation for Student, Teacher, Scholar}, we calculated the
+average of each attribute for each type of badge. The third one is a
+\emph{Bubble chart illustrating Number of Posts and Upvotes for each
+Question Type in 5W1H}, which was rendered from the extraction of
+question types utilising regexes. We leveraged regexes once again in our
+fourth chart, \emph{Combo chart (line and scatter) visualising Top 3
+Highest and Top 3 Lowest Days of Average Comments' Sentiment Scores}, to
+extract the dates of comments and compute the daily average sentiment
+scores of those. The last visualisation is a \emph{Word cloud of used
+Tags} in which we simply used the tags and their corresponding
+frequencies to generate. In the final part, we addressed the concerns of
+data privacy from re-identification, how they arise, the downsides of
+current data privacy laws, and recommendations for individuals to
+protect themselves when joining any internet site.
+
+\subsection{11. Author's other
+information}\label{authors-other-information}
+
+\begin{itemize}
+\item
+  Undergraduate (SIT220) student at Deakin University
+\item
+  Student number: 224605002
+\item
+  Email address: s224605002@deakin.edu.au
+\end{itemize}
+
+
+
+
+\end{document}
