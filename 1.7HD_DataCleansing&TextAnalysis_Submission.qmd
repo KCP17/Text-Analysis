@@ -1,5 +1,5 @@
 ---
-title: 'Task 1.7HD: Data Cleansing and Text Analysis Challenge'
+title: 'Data Cleansing and Text Analysis'
 author: Tri Khuong Nguyen
 toc: true
 highlight-style: pygments
